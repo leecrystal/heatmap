@@ -21,6 +21,8 @@ app.use(express.urlencoded({ extended: false}));
 
 
 app.use('/', require('./Routes/index'));
+app.use('/map', require('./Routes/map'));
+
 
 
 

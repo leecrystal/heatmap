@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const formidable = require('formidable');
 router.get('/', (req,res) => {
-    res.render('welcome');
+    res.render('home');
 });
 
 router.post('/upload',function(req,res){
