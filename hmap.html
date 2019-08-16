@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <!-- <head>
+  <head>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -16,6 +16,7 @@
     </style>
   </head>
   <body>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <div id="map"></div>
       <script>
       var map, heatmap;
@@ -25,39 +26,25 @@
           zoom: 13
         });
 
-        $.getJSON("/uploads/locations.json", function(data) {
-          $.each(data, function(key, data) {
-            var coord = new google.maps.LatLng(data.lat, data.lng); 
+        var format = 0.0000001;
+        $.getJSON('location.json', function(json) {
+          var lat, long, coord;
+          for(var i = 0; i < Object.keys(json.locations).length; i++){
+            lat = json.locations[i].latitudeE7 * format;
+            long = json.locations[i].longitudeE7 * format;
+            if(lat==null || long == null){
+              continue;
+            }
+            coord = new google.maps.LatLng(lat, long);
+
             heatmap = new google.maps.visualization.HeatmapLayer({
               data: coord,
               map: map,
             });
-          });
+          }
         });
       }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP63qnKqyvud4VYjP481_8XDWEOSSffik&callback=initMap"
-    ></script> 
-  </body> -->
-  <body>
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script>
-  // $.getJSON("/uploads/locations.json", function(data) {
-  //   $.each(data, function(key, data) {
-  //     var coord = new google.maps.LatLng(data.lat, data.lng); 
-  //     heatmap = new google.maps.visualization.HeatmapLayer({
-  //       data: coord,
-  //       map: map,
-  //     });
-  //   });
-  // });
-  // var json = require('./uploads/location.json');
-  
-  $.getJSON('location.json', function(json) {
-    console.log(json); // this will show the info it in firebug console
-});
-
-  console.log("Hello");
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP63qnKqyvud4VYjP481_8XDWEOSSffik&libraries=visualization&callback=initMap"></script>
   </body>
 </html>
