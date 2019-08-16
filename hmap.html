@@ -27,6 +27,7 @@
         });
 
         var format = 0.0000001;
+        let data = [];
         $.getJSON('location.json', function(json) {
           var lat, long, coord;
           for(var i = 0; i < Object.keys(json.locations).length; i++){
@@ -36,12 +37,13 @@
               continue;
             }
             coord = new google.maps.LatLng(lat, long);
-
-            heatmap = new google.maps.visualization.HeatmapLayer({
-              data: coord,
-              map: map,
-            });
+            data.push(coord);
           }
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+              data: data,
+              map: map,
         });
       }
   </script>
