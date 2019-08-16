@@ -1,5 +1,5 @@
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
+//const expressLayouts = require('express-ejs-layouts');
 const formidable = require('formidable');
 const app = express();
 const upload = require('express-fileupload');
@@ -12,18 +12,48 @@ publicDir = path.join(__dirname,'/public');
 app.use(express.static(publicDir));
 
 //MiddleWare
-app.use(expressLayouts);
+//app.use(expressLayouts);
 app.use(upload());
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 //BodyParser
 app.use(express.urlencoded({ extended: false}));
 
 
-app.use('/', require('./Routes/index'));
-app.use('/map', require('./Routes/map'));
+// app.use('/', require('./Routes/index'));
+// app.use('/hmap', require('./Routes/hmap'));
 
+app.get('/', (req,res) => {
+    res.sendFile('home.html', { root: __dirname });
+})
 
+app.get('/hmap' ,(req,res) => {
+    res.sendFile('hmap.html', { root: __dirname });
+})
+
+app.post('/upload',function(req,res){
+    console.log(req.files);
+    if(req.files.upfile){
+      var file = req.files.upfile,
+        name = file.name,
+        type = file.mimetype;
+      var uploadpath = __dirname + '/uploads/' + name;
+      file.mv(uploadpath,function(err){
+        if(err){
+          console.log("File Upload Failed",name,err);
+          res.send("Error Occured!")
+        }
+        else {
+          console.log("File Uploaded",name);
+          res.sendFile('home.html', { root: __dirname });
+        }
+      });
+    }
+    else {
+      res.send("No File selected !");
+      res.end();
+    };
+  })
 
 
 const PORT = process.env.PORT || 5000;
