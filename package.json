@@ -2,8 +2,11 @@
   "name": "Heat",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://leecrystal.github.io/HeatMap",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
@@ -17,6 +20,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-fileupload": "^1.1.5",
     "formidable": "^1.2.1",
+    "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "nodemon": "^1.19.1"
   }
