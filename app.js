@@ -5,7 +5,7 @@ const app = express();
 const upload = require('express-fileupload');
 const path = require('path');
 const publicPath = path.resolve(__dirname, 'public');
-const json = require('./uploads/location.json');
+
 
 app.use(express.static(publicPath));
 
@@ -32,11 +32,11 @@ app.get('/hmap' ,(req,res) => {
     res.sendFile('hmap.html', { root: __dirname });
 })
 
-app.post('/hmap',function(req,res){
+app.post('/',function(req,res){
     console.log(req.files);
     if(req.files.upfile){
       var file = req.files.upfile,
-        name = file.name,
+        name = 'location.json',
         type = file.mimetype;
       var uploadpath = __dirname + '/uploads/' + name;
       file.mv(uploadpath,function(err){
@@ -46,7 +46,7 @@ app.post('/hmap',function(req,res){
         }
         else {
           console.log("File Uploaded",name);
-          res.sendFile('hmap.html', { root: __dirname });
+          res.sendFile('home.html', { root: __dirname });
         }
       });
     }
@@ -57,6 +57,8 @@ app.post('/hmap',function(req,res){
   })
 
   app.get('/location.json' ,(req,res) => {
+    const json = require('./uploads/location.json');
+    console.log(json);
     res.json(json);
 })
 

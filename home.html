@@ -12,10 +12,13 @@
         <div class="desc">
           Visit <a href="https://takeout.google.com/settings/takeout">Google Takeout</a>
           and download your 'Location History' file. <br>Add the file below.
-          <form class="fileupload" action="/hmap" method="post" enctype="multipart/form-data">
+          <form class="fileupload" action="/" method="post" enctype="multipart/form-data">
+          <div class="button">
             <input type="file" name="upfile" value="">
-          </form>
-          <button onclick="window.location.href = '/hmap'">View Map</button>
+            <button type="submit" >Submit</button>
+          </div>
+        </form>
+        <a href="/hmap"><input type="MAP"/></a>
         </div>
       </div>
     </div>

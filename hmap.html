@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      #map {
-        height: 100%;
-      }
-
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <div id="map"></div>
       <script>
       var map, heatmap;
       function initMap() {
@@ -28,7 +11,7 @@
 
         var format = 0.0000001;
         let data = [];
-        $.getJSON('location.json', function(json) {
+        $.getJSON('/location.json', function(json) {
           var lat, long, coord;
           for(var i = 0; i < Object.keys(json.locations).length; i++){
             lat = json.locations[i].latitudeE7 * format;
@@ -48,5 +31,22 @@
       }
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP63qnKqyvud4VYjP481_8XDWEOSSffik&libraries=visualization&callback=initMap"></script>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <div id="map"></div>
   </body>
 </html>
