@@ -5,6 +5,7 @@ const app = express();
 const upload = require('express-fileupload');
 const path = require('path');
 const publicPath = path.resolve(__dirname, 'public');
+const json = require('./uploads/location.json');
 
 app.use(express.static(publicPath));
 
@@ -55,6 +56,9 @@ app.post('/hmap',function(req,res){
     };
   })
 
+  app.get('/location.json' ,(req,res) => {
+    res.json(json);
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

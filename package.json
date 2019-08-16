@@ -17,6 +17,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-fileupload": "^1.1.5",
     "formidable": "^1.2.1",
+    "jquery": "^3.4.1",
     "nodemon": "^1.19.1"
   }
 }
