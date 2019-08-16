@@ -3,7 +3,13 @@ const expressLayouts = require('express-ejs-layouts');
 const formidable = require('formidable');
 const app = express();
 const upload = require('express-fileupload');
+const path = require('path');
+const publicPath = path.resolve(__dirname, 'public');
 
+app.use(express.static(publicPath));
+
+publicDir = path.join(__dirname,'/public');
+app.use(express.static(publicDir));
 
 //MiddleWare
 app.use(expressLayouts);
