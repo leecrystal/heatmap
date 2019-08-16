@@ -31,7 +31,7 @@ app.get('/hmap' ,(req,res) => {
     res.sendFile('hmap.html', { root: __dirname });
 })
 
-app.post('/upload',function(req,res){
+app.post('/hmap',function(req,res){
     console.log(req.files);
     if(req.files.upfile){
       var file = req.files.upfile,
@@ -45,7 +45,7 @@ app.post('/upload',function(req,res){
         }
         else {
           console.log("File Uploaded",name);
-          res.sendFile('home.html', { root: __dirname });
+          res.sendFile('hmap.html', { root: __dirname });
         }
       });
     }
