@@ -10,3 +10,7 @@ cd heatmap
 npm install
 npm start
 ```
+
+## Demonstration
+
+![](heatmap.gif)
